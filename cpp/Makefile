@@ -1,11 +1,15 @@
-PROGNAME = hello
-CFLAGS = -Wall
-LDFLAGS = -lSDL -lSDL_image
+CC = g++
+PROGNAME = stereo
+CFLAGS = -Wall -g
+LDFLAGS = -lSDL -ljpeg
 
 all: $(PROGNAME)
 
-$(PROGNAME): $(PROGNAME).cpp
-	$(CC) $(PROGNAME).cpp -o $(PROGNAME) $(CFLAGS) $(LDFLAGS)
+$(PROGNAME): $(PROGNAME).cpp camera.h camera.cpp jpeg_util.cpp
+	$(CC) $(PROGNAME).cpp camera.cpp jpeg_util.cpp -o $(PROGNAME) $(CFLAGS) $(LDFLAGS)
+
+tags:
+	ctags *.cpp *.h
 
 clean:
 	rm -f $(PROGNAME) *.o

@@ -70,7 +70,7 @@ static void process_image(const void *p, int size)
                 fwrite(p, size, 1, stdout);
 
         fflush(stderr);
-        fprintf(stderr, ".");
+        fprintf(stderr, "process_image: p=%p, size=%u\n", p, size);
         fflush(stdout);
 }
 
@@ -486,7 +486,7 @@ static void init_device(void)
                 fmt.fmt.pix.width       = 640;
                 fmt.fmt.pix.height      = 480;
                 fmt.fmt.pix.pixelformat = V4L2_PIX_FMT_YUYV;
-                fmt.fmt.pix.field       = V4L2_FIELD_INTERLACED;
+                fmt.fmt.pix.field       = V4L2_FIELD_NONE;//V4L2_FIELD_INTERLACED;
 
                 if (-1 == xioctl(fd, VIDIOC_S_FMT, &fmt))
                         errno_exit("VIDIOC_S_FMT");
